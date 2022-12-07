@@ -3,20 +3,43 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       repos: []
     }
+    this.updateData = this.updateData.bind(this);
+  }
 
+  updateData() {
+    axios.get('/repos')
+    .then((response) => {
+      console.log(response.data);
+      let newrepos = [...this.state.repos];
+      newrepos = [... response.data];
+      this.setState({repos: newrepos});
+      console.log(this.state.repos);
+    })
   }
 
   search (term) {
     console.log(`${term} was searched`);
-    // TODO
+    axios.post('/repos', {user: term})
+      .then((response) => {
+        // this will return array of repository name from mongodb
+        console.log(`Response is ${response}`);
+        this.updateData();
+
+      })
+      .catch((error) => console.log(error));
   }
+
+  componentDidMount() {
+    this.updateData();
+   }
 
   render () {
     return (<div>

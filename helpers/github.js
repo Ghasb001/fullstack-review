@@ -15,14 +15,14 @@ let getReposByUsername = (username, callback) => {
     }
   };
 
-  axios.get(options, (err, response, body) => {
-    if (err) {
-      callback(err)
-    } else {
-      callback(null, JSON.parse(body));
-    }
-  });
+  var data;
 
-}
+  axios.get(options.url, {headers: options.headers})
+  .then(res => {
+   console.log('Here');
+  })
+  .catch(err => console.log('Fetch failed from GitHub'));
+
+ }
 
 module.exports.getReposByUsername = getReposByUsername;
