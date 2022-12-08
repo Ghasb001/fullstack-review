@@ -40,8 +40,6 @@ let filter = (callback) => {
     let repoList = result.map((data) => {
       return {name: data._doc.name, url: data._doc.url, score: data._doc.score};
     });
-    console.log('find and sort complete');
-    console.log(`List of repos ${repoList}`);
 
     callback(repoList);
   }))
