@@ -17,11 +17,9 @@ class App extends React.Component {
   updateData() {
     axios.get('/repos')
     .then((response) => {
-      console.log(response.data);
-      let newrepos = [...this.state.repos];
-      newrepos = [... response.data];
-      this.setState({repos: newrepos});
-      console.log(this.state.repos);
+      let newList= [...this.state.repos];
+      newList = [... response.data];
+      this.setState({repos: newList});
     })
   }
 

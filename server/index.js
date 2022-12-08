@@ -35,22 +35,22 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-  // filter(result => {
-  //   let data = [];
-  //   if (result.length <= 25) {
-  //     for (let each of result) {
-  //       data.push(each)
-  //     }
-  //     console.log('Data is less then 25')
-  //     res.send(data)
-  //   } else {
-  //     for (var i = 0; i < 25; i++) {
-  //       data.push(result[i]);
-  //     }
-  //     console.log('data procceed');
-  //     res.send(data);
-  //   }
-  // })
+  filter(result => {
+    let data = [];
+    if (result.length <= 25) {
+      for (let each of result) {
+        data.push(each)
+      }
+      console.log('Data is less then 25')
+      res.send(data)
+    } else {
+      for (var i = 0; i < 25; i++) {
+        data.push(result[i]);
+      }
+      console.log('data procceed');
+      res.send(data);
+    }
+  })
 
 });
 

@@ -8,6 +8,7 @@ mongoose.connect('mongodb+srv://Ghasb001:DEADspace!1991@cluster0.4ygl3zq.mongodb
   console.log('Error', err)
 })
 
+
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
   name: String,
@@ -33,6 +34,20 @@ let save = (repos, callback) => {
 
 }
 
+let filter = (callback) => {
+  Repo.find({}).sort('-score')
+  .then((result => {
+    let repoList = result.map((data) => {
+      return {name: data._doc.name, url: data._doc.url, score: data._doc.score};
+    });
+    console.log('find and sort complete');
+    console.log(`List of repos ${repoList}`);
+
+    callback(repoList);
+  }))
+}
+
 
 
 module.exports.save = save;
+module.exports.filter = filter;;
