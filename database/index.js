@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+//mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect('mongodb+srv://Ghasb001:DEADspace!1991@cluster0.4ygl3zq.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => {
+  console.log('db connected')
+})
+.catch((err) => {
+  console.log('Error', err)
+})
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
@@ -14,10 +21,22 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (/* TODO */) => {
+let save = (repos, callback) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
+
+  Repo.insertMany(repos)
+    .then((data) => {
+      console.log('Saved successfully')
+      callback(data);
+  })
+  .catch((err) => {
+    console.log('Cannot save', err);
+  })
+
 }
+
+
 
 module.exports.save = save;

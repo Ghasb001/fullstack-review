@@ -18,10 +18,16 @@ let getReposByUsername = (username, callback) => {
   var data;
 
   axios.get(options.url, {headers: options.headers})
-  .then(res => {
-   console.log('Here');
-  })
-  .catch(err => console.log('Fetch failed from GitHub'));
+   .then(res => {
+    data = res.data.map(x => {
+      let data = {name: x.name, url: x['html_url'], score: x.forks + x.watchers};
+      return data;
+    })
+      // console.log(data);
+      callback(data)
+      console.log('Github succesfully fetched');
+   })
+   .catch(err => console.log('Fetch failed from GitHub'));
 
  }
 
