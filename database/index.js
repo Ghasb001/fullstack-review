@@ -10,13 +10,9 @@ mongoose.connect('mongodb+srv://Ghasb001:DEADspace!1991@cluster0.4ygl3zq.mongodb
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
-  id: Number,
   name: String,
-  owner: {
-    login: String,
-    id: Number,
-    html_url: String
-  },
+  url: {type: String, unique: true},
+  score: Number
 });
 
 let Repo = mongoose.model('Repo', repoSchema);

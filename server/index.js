@@ -21,13 +21,12 @@ app.post('/repos', function (req, res) {
   let user = req.body.user
   getReposByUsername(user, (result) => {
       console.log(result);
-      save(result, (finalresult) => {
-        if (result === finalresult) {
-          res.send(finalResult);
+      save(result, (final) => {
+        if (result === final) {
+          res.send(final);
         } else {
           res.send([]);
         }
-        //res.send('success');
       });
   });
 
