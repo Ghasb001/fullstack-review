@@ -27,7 +27,6 @@ class App extends React.Component {
     console.log(`${term} was searched`);
     axios.post('/repos', {user: term})
       .then((response) => {
-        // this will return array of repository name from mongodb
         console.log(`Response is ${response}`);
         this.updateData();
 
