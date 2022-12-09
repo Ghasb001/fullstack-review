@@ -39,20 +39,42 @@ app.get('/repos', function (req, res) {
   //sort method
   //check for duplicates
   filter(result => {
-    console.log('RESULT', result);
-    result = result.sort((a, b) => a.score - b.score);
+    result = result.sort((a, b) => b.score - a.score);
     let data = [];
-    if (result.length <= 25) {
-      for (let each of result) {
-        data.push(each)
-      }
-      res.send(data)
-    } else {
-      for (var i = 0; i < 25; i++) {
+    let clear = [];
+    console.log('RESULTS', result);
+    //var checkers = JSON.stringify(data.slice());
+
+    var i = 0;
+    while (data.length < 25) {
+      if (clear.indexOf(result[i].name) === -1) {
         data.push(result[i]);
+        clear.push(result[i].name)
       }
-      res.send(data);
+      i++;
     }
+    res.send(data)
+
+    // if (result.length <= 25) {
+    //   //let each of result
+    //   for (var j = 0; j < result.length - 1; j++) {
+    //     if (clear.indexOf(result[j].name) === -1) {
+    //       data.push(result[j]);
+    //       clear.push(result[j].name)
+    //     }
+    //     //data.push(each)
+    //   }
+    //   res.send(data)
+    // } else {
+    //   for (var i = 0; i < 25; i++) {
+    //     if (clear.indexOf(result[i].name) === -1) {
+    //       data.push(result[i]);
+    //       clear.push(result[i].name)
+    //     }
+    //     //data.push(result[i]);
+    //   }
+    //   res.send(data);
+    // }
   })
 
 });
@@ -63,3 +85,34 @@ app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
 
+/*
+
+  filter(result => {
+    result = result.sort((a, b) => a.score - b.score);
+    let data = [];
+
+    var checkers = JSON.stringify(data.slice());
+
+    if (result.length <= 25) {
+      //var checkers = JSON.stringify(data.slice());
+
+      for (let each of result) {
+        if (!checkers.includes(JSON.stringify(each))) {
+          data.push(each)
+        }
+        //data.push(each)
+      }
+      res.send(data)
+    } else {
+      for (var i = 0; i < 25; i++) {
+        if (!checkers.includes(JSON.stringify(result[i]))) {
+          data.push(result[i]);
+        }
+        //data.push(result[i]);
+      }
+      //data = data.filter(repoObj => )
+      res.send(data);
+    }
+  })
+
+*/
