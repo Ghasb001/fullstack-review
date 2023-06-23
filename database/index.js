@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/fetcher');
-mongoose.connect('mongodb+srv://Ghasb001:DEADspace!1991@cluster0.4ygl3zq.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
   console.log('db connected')
 })
