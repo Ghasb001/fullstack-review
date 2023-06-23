@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 //mongoose.connect('mongodb://localhost/fetcher');
-mongoose.connect('', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.STRING, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
   console.log('db connected')
 })
