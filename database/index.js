@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 //mongoose.connect('mongodb://localhost/fetcher');
-mongoose.connect(process.env.STRING, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://127.0.0.1:27017/gits', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
   console.log('db connected')
 })
